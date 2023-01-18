@@ -16,12 +16,9 @@ spec:
             containers:
             - name: redis
               image: bitnami/redis:latest
-              env:
-                - name: REDIS_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                        name: redis-password
-                        key: redis-password
+              envFrom:
+              - secretRef:
+                name: REDIS_PASSWORD
               ports:
               - containerPort: 6379
                 name: redis-port
